@@ -1,12 +1,12 @@
 # Spotify Lyrics Real-Time
 
-This web application connects to your Spotify account, displays your currently playing song, and fetches lyrics from AZLyrics.
+This web application connects to your Spotify account, displays your currently playing song, and fetches lyrics from the Lyrics.ovh API.
 
 ## Features
 
 - Real-time tracking of currently playing Spotify song
 - Displays song information, album art, and progress bar
-- Fetches and displays lyrics from AZLyrics
+- Fetches and displays lyrics from Lyrics.ovh API
 - Automatic updates when songs change
 
 ## Setup
@@ -54,13 +54,20 @@ Navigate to http://127.0.0.1:5000 in your web browser.
 
 1. The app authenticates with Spotify using OAuth
 2. It periodically checks what song you're playing
-3. When a song is detected, it attempts to fetch lyrics from AZLyrics
+3. When a song is detected, it fetches lyrics from the Lyrics.ovh API
 4. The UI updates in real-time using WebSockets
 5. The lyrics are cached to avoid redundant requests
 
+## About Lyrics.ovh API
+
+The app uses the [Lyrics.ovh API](https://lyricsovh.docs.apiary.io/#) to fetch lyrics. This provides a simple and reliable way to get lyrics for most songs by making requests to:
+
+```
+https://api.lyrics.ovh/v1/{artist}/{song}
+```
+
 ## Important Notes
 
-- **AZLyrics has anti-scraping measures**: The app uses web scraping to get lyrics, which may not always work if AZLyrics detects automated access
-- The app's ability to fetch lyrics depends on AZLyrics' URL structure and page layout, which might change
-- You need to have an active Spotify session (playing music) for the app to work
-- The app works best with Premium Spotify accounts that have full playback control 
+- The app needs an active Spotify session (playing music) to work
+- The app works best with Premium Spotify accounts that have full playback control
+- Lyrics availability depends on the Lyrics.ovh API database
